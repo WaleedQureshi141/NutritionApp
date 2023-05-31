@@ -1,4 +1,5 @@
 *README*
 
 Creating a database server
-server
+server name:
+password:
