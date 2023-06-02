@@ -1,43 +1,52 @@
 package com.genspark.nutritionapp.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Table(name="users")
+@Table(name = "user")
 public class User {
 
-    @Id
-    @Column(name="username")
-    private String username;
 
-    @Column(name="password")
+    @Id
+    @Column(name = "username")
+    private String userName;
+
+    @Column(name = "password")
     private String password;
 
-    @Column(name="active")
-    private int active;
+    @Column(name = "enabled")
+    private boolean enabled;
 
-    @Column(name="role")
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "username"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 
-    public String getUsername() {
-        return username;
+    public User() {
     }
 
-    public User(){
-
-    }
-    public User(String username, String password, int active, String roles) {
-        this.username = username;
+    public User(String userName, String password, boolean enabled) {
+        this.userName = userName;
         this.password = password;
-        this.active = active;
-        this.role = roles;
+        this.enabled = enabled;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public User(String userName, String password, boolean enabled,
+                Collection<Role> roles) {
+        this.userName = userName;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -48,20 +57,29 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setRole(String roles) {
-        this.role = roles;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public int getActive() {
-        return active;
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setActive(int active) {
-        this.active = active;
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
     }
 }
-

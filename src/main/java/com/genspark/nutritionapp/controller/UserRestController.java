@@ -28,7 +28,7 @@ public class UserRestController {
     //  GET users/{username} endpoint for getting single user info
     @GetMapping("/users/{username}")
     public User getUser(@PathVariable String username){
-        User user = userInfoService.findByUsername(username);
+        User user = userInfoService.findByUserName(username);
 
         if(user == null){
             throw new RuntimeException("Username not found: " + username);
@@ -46,16 +46,16 @@ public class UserRestController {
         return dbUser;
     }
 
-    // DELETE /users/{username} for adding delete
-    @DeleteMapping("/users/{username}")
-    public String deleteUser(@PathVariable String username){
-        User temp = userInfoService.findByUsername(username);
-
-        if(temp == null){
-            throw new RuntimeException("Username not found: " + username);
-        }
-
-        userInfoService.deleteByUsername(username);
-        return "Deleted username: " + username;
-    }
+//    // DELETE /users/{username} for adding delete
+//    @DeleteMapping("/users/{username}")
+//    public String deleteUser(@PathVariable String username){
+//        User temp = userInfoService.findByUsername(username);
+//
+//        if(temp == null){
+//            throw new RuntimeException("Username not found: " + username);
+//        }
+//
+//        userInfoService.deleteByUsername(username);
+//        return "Deleted username: " + username;
+//    }
 }
