@@ -12,5 +12,7 @@ public interface UserInfoService extends UserDetailsService {
 
     User save(User user);
 
+    List<User> deleteByUserName(String username);
 
+    User saveDeveloper(User user);
 }

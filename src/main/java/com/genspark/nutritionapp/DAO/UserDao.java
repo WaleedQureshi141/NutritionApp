@@ -12,4 +12,6 @@ public interface UserDao {
     User save(User user);
 
     List<User> getAllUsers();
+
+    void deleteByUserName(String userName);
 }

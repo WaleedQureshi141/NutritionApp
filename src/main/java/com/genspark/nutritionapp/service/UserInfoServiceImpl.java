@@ -50,13 +50,33 @@ public class UserInfoServiceImpl implements UserInfoService {
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role role = new Role();
+        role.setId(2L);
+        role.setName("ROLE_USER");
+        ArrayList<Role> roleArrayList = new ArrayList<>();
+        roleArrayList.add(role);
+        user.setRoles(roleArrayList);
+        user.setEnabled(true);
+        //user.setDay(1)
+        return userDao.save(user);
+    }
+
+    @Override
+    public List<User> deleteByUserName(String username) {
+        this.userDao.deleteByUserName(username);
+        return this.userDao.getAllUsers();
+    }
+
+    @Override
+    public User saveDeveloper(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role role = new Role();
         role.setId(1L);
         role.setName("ROLE_DEVELOPER");
         ArrayList<Role> roleArrayList = new ArrayList<>();
         roleArrayList.add(role);
         user.setRoles(roleArrayList);
         user.setEnabled(true);
-
+        //user.setDay(1)
         return userDao.save(user);
     }
 
@@ -75,4 +95,5 @@ public class UserInfoServiceImpl implements UserInfoService {
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
+
 }

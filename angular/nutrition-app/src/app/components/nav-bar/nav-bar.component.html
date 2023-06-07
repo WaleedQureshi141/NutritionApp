@@ -1,0 +1,9 @@
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills nav-list">
+        <li class="nav-item"><a href="/" [ngClass]="this.router.url === '/' ? 'nav-link active nav-active' : 'nav-link'">CREATE ACCOUNT</a></li>
+        <li class="nav-item"><a href="/login" [ngClass]="this.router.url === '/login' ? 'nav-link active nav-active' : 'nav-link'">LOGIN</a></li>
+        <li class="nav-item"><a href="/about" [ngClass]="this.router.url === '/about' ? 'nav-link active nav-active' : 'nav-link'">ABOUT</a></li>
+      </ul>
+    </header>
+  </div>

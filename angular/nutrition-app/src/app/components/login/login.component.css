@@ -1,0 +1,23 @@
+.login-flex {
+    margin-top: 25px;
+    gap: 100px;
+}
+.user-info-flex {
+    border-style: dotted;
+    border-color: #146C94;
+    background-color: #AFD3E2;
+    margin: 25px;
+    padding: 80px;
+    gap: 45px;
+}
+.container {
+    background-color: #F6F1F1;
+}
+.form-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+label {
+    font-size: larger;
+}

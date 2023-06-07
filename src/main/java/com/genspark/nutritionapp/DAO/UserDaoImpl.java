@@ -1,5 +1,6 @@
 package com.genspark.nutritionapp.DAO;
 
+import com.genspark.nutritionapp.entity.Role;
 import com.genspark.nutritionapp.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -25,7 +26,7 @@ public class UserDaoImpl implements UserDao {
         try {
             theUser = query.getSingleResult();
         } catch (Exception e) {
-            theUser = null;
+            theUser = new User();
         }
 
         return theUser;
@@ -34,16 +35,17 @@ public class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public User save(User user){
-        System.out.println(user);
         entityManager.createNativeQuery("INSERT INTO user (username, password, enabled) VALUES (?, ?, ?)")
                 .setParameter(1, user.getUserName())
                 .setParameter(2, user.getPassword())
                 .setParameter(3,user.isEnabled())
                 .executeUpdate();
-        entityManager.createNativeQuery("INSERT INTO users_roles (username, role_id) VALUES (?, ?)")
-                .setParameter(1, user.getUserName())
-                .setParameter(2,1)
-                .executeUpdate();
+        for(Role role: user.getRoles()){
+            entityManager.createNativeQuery("INSERT INTO users_roles (username, role_id) VALUES (?, ?)")
+                    .setParameter(1, user.getUserName())
+                    .setParameter(2,role.getId())
+                    .executeUpdate();
+        }
         return user;
     }
 
@@ -55,6 +57,16 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+    @Override
+    @Transactional
+    public void deleteByUserName(String userName){
+        entityManager.createNativeQuery("DELETE FROM users_roles WHERE userName = ?")
+                .setParameter(1, userName)
+                .executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM user WHERE userName = ?")
+                .setParameter(1, userName)
+                .executeUpdate();
+    }
 
 
 }
