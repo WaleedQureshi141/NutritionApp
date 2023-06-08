@@ -1,11 +1,14 @@
 package com.genspark.nutritionapp.controller;
 
+import com.genspark.nutritionapp.entity.Nutrition;
 import com.genspark.nutritionapp.entity.User;
+import com.genspark.nutritionapp.service.NutritionInfoService;
 import com.genspark.nutritionapp.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,13 +20,25 @@ public class UserRestController {
     private UserInfoService userInfoService;
 
 
+    private NutritionInfoService nutritionInfoService;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserRestController(UserInfoService userInfoService){
+    public UserRestController(UserInfoService userInfoService, NutritionInfoService nutritionInfoService){
         this.userInfoService = userInfoService;
+        this.nutritionInfoService = nutritionInfoService;
     }
+
+//    @Autowired
+//    public UserRestController(NutritionInfoService nutritionInfoService)
+//    {
+//        this.nutritionInfoService = nutritionInfoService;
+//    }
+
+
+
 
     // GET /users endpoint for getting all users
     @GetMapping("/users")
@@ -82,6 +97,50 @@ public class UserRestController {
         }
 
         List<User> rv = userInfoService.deleteByUserName(username);
+        return rv;
+    }
+
+    //nutrition endpoints
+
+    // GET /nutritions endpoint for getting all the nutrition info
+    @GetMapping("/nutritions")
+    public List<Nutrition> findAllNutrition()
+    {
+        return nutritionInfoService.findAllNutrition();
+    }
+
+    //  GET /nutritions/{foodname} endpoint for getting single nutrition info
+    @GetMapping("/nutritions/{username}")
+    public List<Nutrition> getNutrition(@PathVariable String username){
+        List<Nutrition> user = nutritionInfoService.findByNutritionUserName(username);
+
+        if(user == null){
+            throw new RuntimeException("Username not found: " + username);
+        }
+
+        return user;
+    }
+
+    // POST /users for adding a new nutrition
+    @PostMapping("/nutritions")
+    public Nutrition addFood(@RequestBody Nutrition nutrition){
+
+        System.out.println(nutrition);
+
+        Nutrition dbNutrition = nutritionInfoService.saveNutrition(nutrition);
+
+        return dbNutrition;
+    }
+
+    @DeleteMapping("/nutritions/{id}")
+    public List<Nutrition> deleteNutrition(@PathVariable int id)
+    {
+        Nutrition temp = nutritionInfoService.findById(id);
+        if(temp == null){
+            throw new RuntimeException("id not found: " + id);
+        }
+
+        List<Nutrition> rv = nutritionInfoService.deleteById(id);
         return rv;
     }
 }

@@ -1,8 +1,10 @@
 export interface Food {
-    food_name: string,
+    id: number;
+    userName: string,
+    foodName: string,
     calories: number,
-    protein_g: number,
-    fat_g: number,
-    carbs_g: number,
-    add_date: string
+    protein: number,
+    fat: number,
+    carbs: number,
+    addDate: string
 }

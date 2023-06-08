@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../entities/User';
-
+import { Food } from '../entities/Food';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private devApi = 'http://localhost:8081/api/dev';
-  private apiUrl = 'http://localhost:8081/api/users'
+  private nutritionApi = 'http://localhost:8081/api/nutritions';
+  private apiUrl = 'http://localhost:8081/api/users';
   private httpOptions  = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -34,7 +35,6 @@ export class AccountService {
       'Content-Type': 'application/json',
       'Authorization': sessionStorage.getItem('authKey') as string
     })
-    console.log(this.httpOptions);
     return this.http.get<User[]>(this.apiUrl, this.httpOptions);
   }
   checkUserExists(user: User): Observable<User> {
@@ -50,13 +50,19 @@ export class AccountService {
     console.log(this.httpOptions);
     return this.http.delete<User[]>(url, this.httpOptions);
   }
-  // modifyHttpOptions(user: User): void {
-  //   console.log(this.httpOptions);
-  //   console.log(user.userName);
-  //   console.log(user.password);
-  //   this.httpOptions.headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': 'Basic ' + sessionStorage.getItem('authKey') as string
-  //   })
-  // }
+  retrieveUserFoods(username: string): Observable<Food[]>{
+    const url = `${this.nutritionApi}/${username}`;
+    this.httpOptions.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': sessionStorage.getItem('authKey') as string
+    })
+    return this.http.get<Food[]>(url, this.httpOptions);
+  }
+  addFood(food: Food){
+    this.httpOptions.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': sessionStorage.getItem('authKey') as string
+    })
+    return this.http.post<User>(this.nutritionApi,food, this.httpOptions);
+  }
 }

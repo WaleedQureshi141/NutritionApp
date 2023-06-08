@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
 import { Food } from 'src/app/entities/Food';
+import { AccountService } from 'src/app/services/account.service';
 @Component({
   selector: 'app-add-food',
   templateUrl: './add-food.component.html',
   styleUrls: ['./add-food.component.css']
 })
 export class AddFoodComponent {
-  food_name!: string;
+  foodName!: string;
   calories!: number;
-  protein_g!: number;
-  fat_g!: number;
-  carbs_g!: number;
-  add_date!: string;
+  protein!: number;
+  fat!: number;
+  carbs!: number;
+  addDate!: string;
+
+  constructor(private accountService: AccountService){}
 
   onSubmit():void {
-    if(!this.food_name){
+    if(!this.foodName){
       alert('Please add a foodname!');
       return;
     } 
@@ -22,25 +25,35 @@ export class AddFoodComponent {
       alert('Please add how many calories this item contains.');
       return;
     }
-    if (!this.protein_g){
+    if (!this.protein){
       alert('Please add how many grams of protein this item contains.');
       return;
     }
-    if (!this.fat_g){
+    if (!this.fat){
       alert('Please add how many grams of fat this item contains.');
       return;
     }
-    if (!this.carbs_g){
+    if (!this.carbs){
       alert('Please add how many games of carbs this item contains.');
       return;
     }
     const newFood : Food = {
-      food_name: this.food_name,
+      id: 0,
+      userName: localStorage.getItem('currentUser') as string,
+      foodName: this.foodName,
       calories: this.calories,
-      protein_g: this.protein_g,
-      fat_g: this.fat_g,
-      carbs_g: this.carbs_g,
-      add_date: this.add_date
+      protein: this.protein,
+      fat: this.fat,
+      carbs: this.carbs,
+      addDate: this.addDate
     }
+    this.accountService.addFood(newFood).subscribe();
+    alert('Food succesfully created.');
+    this.foodName = '';
+    this.calories = 0;
+    this.protein = 0;
+    this.fat = 0;
+    this.carbs = 0;
+    this.addDate = '2023-06-08';
   }
 }

@@ -8,13 +8,17 @@
                 <th scope="col">Protein(grams)</th>
                 <th scope="col">Fat(grams)</th>
                 <th scope="col">Carbs(grams)</th>
-                <th scope="col">Date</th>
+                <th scope="col">Date(YYYY-MM-DD)</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let f of foods">
-              <td>{{f.food_name}}</td>
+              <td>{{f.foodName}}</td>
               <td>{{f.calories}}</td>
+              <td>{{f.protein}}</td>
+              <td>{{f.fat}}</td>
+              <td>{{f.carbs}}</td>
+              <td>{{f.addDate}}</td>
               <button type="button" class="btn btn-danger btn-sm" (click)="deleteFood(f)">Delete</button>
             </tr>
           </tbody>
