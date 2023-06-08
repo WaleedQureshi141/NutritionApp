@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 
 //code was gotten from tutorials in https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/22338522#questions
+//
 @Configuration
 public class SecurityConfig  {
 
