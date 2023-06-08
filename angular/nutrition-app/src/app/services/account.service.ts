@@ -58,11 +58,19 @@ export class AccountService {
     })
     return this.http.get<Food[]>(url, this.httpOptions);
   }
-  addFood(food: Food){
+  addFood(food: Food): Observable<Food>{
     this.httpOptions.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': sessionStorage.getItem('authKey') as string
     })
-    return this.http.post<User>(this.nutritionApi,food, this.httpOptions);
+    return this.http.post<Food>(this.nutritionApi,food, this.httpOptions);
+  }
+  deleteFood(food: Food){
+    const url = `${this.nutritionApi}/${food.id}`;
+    this.httpOptions.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': sessionStorage.getItem('authKey') as string
+    })
+    return this.http.delete<Food[]>(url,this.httpOptions);
   }
 }

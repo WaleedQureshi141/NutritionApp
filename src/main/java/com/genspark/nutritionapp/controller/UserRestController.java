@@ -124,9 +124,6 @@ public class UserRestController {
     // POST /users for adding a new nutrition
     @PostMapping("/nutritions")
     public Nutrition addFood(@RequestBody Nutrition nutrition){
-
-        System.out.println(nutrition);
-
         Nutrition dbNutrition = nutritionInfoService.saveNutrition(nutrition);
 
         return dbNutrition;

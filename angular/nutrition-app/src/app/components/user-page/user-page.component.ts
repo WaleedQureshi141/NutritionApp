@@ -19,7 +19,14 @@ export class UserPageComponent implements OnInit{
   currentUser(): string | null{
     return localStorage.getItem('currentUser');
   }
-  deleteFood(food:Food): void{
-    alert("works");
+  deleteFood(food: Food): void{
+    if(confirm("Do you really want to delete food name:  " + food.foodName)){
+      this.accountService.deleteFood(food).subscribe((foods) => {
+        alert('Deleted food: ' + food.foodName);
+        this.foods = foods.filter((food) => food.userName === localStorage.getItem('currentUser') as string);
+      });
+    } else {
+      return;
+    }
   }
 }
