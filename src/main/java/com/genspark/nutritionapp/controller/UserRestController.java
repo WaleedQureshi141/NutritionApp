@@ -16,6 +16,7 @@ public class UserRestController {
 
     private UserInfoService userInfoService;
 
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 

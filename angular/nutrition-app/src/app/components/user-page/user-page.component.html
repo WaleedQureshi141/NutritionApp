@@ -1,5 +1,24 @@
 <div class="container">
     <app-user-page-nav></app-user-page-nav>
-    <p>hello {{(currentUser())}}</p>
+    <table class="table table-stripped mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Food name</th>
+                <th scope="col">Calories</th>
+                <th scope="col">Protein(grams)</th>
+                <th scope="col">Fat(grams)</th>
+                <th scope="col">Carbs(grams)</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of foods">
+              <td>{{f.food_name}}</td>
+              <td>{{f.calories}}</td>
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteFood(f)">Delete</button>
+            </tr>
+          </tbody>
+    </table>
+    <app-user-footer></app-user-footer>
 </div>
 

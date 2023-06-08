@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { User } from 'src/app/entities/User';
 import { AccountService } from 'src/app/services/account.service';
+
 @Component({
   selector: 'app-dev-page',
   templateUrl: './dev-page.component.html',

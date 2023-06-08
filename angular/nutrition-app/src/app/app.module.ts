@@ -17,6 +17,7 @@ import { DevAuthGuard } from './auth/dev-authentication-guard';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { UserPageNavComponent } from './components/user-page-nav/user-page-nav.component';
 import { AddFoodComponent } from './components/add-food/add-food.component';
+import { UserFooterComponent } from './components/user-footer/user-footer.component';
 const appRoutes: Routes = [
   {
     path: '', component: CreateAccountComponent
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     DevPageComponent,
     UserPageComponent,
     UserPageNavComponent,
-    AddFoodComponent
+    AddFoodComponent,
+    UserFooterComponent
   ],
   imports: [
     BrowserModule,
