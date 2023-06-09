@@ -1,5 +1,5 @@
-   <div class="d-flex flex-column justify-content-center">
-        <p>Currently logged in: {{(currentUser())}}<p>
+<p>Currently logged in: {{(currentUser())}}<p>
+   <div class="d-flex flex-row justify-content-between">
         <button type="button" class="btn btn-danger btn-sm" (click)="logout()">Log Out</button>
         <div *ngIf="showReturnDev()">
             <button type="button" class="btn btn-danger btn-sm" (click)="devGoBack()">Go Back to Dev Page</button>

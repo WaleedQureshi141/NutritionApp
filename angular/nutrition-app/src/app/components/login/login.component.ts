@@ -54,8 +54,8 @@ export class LoginComponent {
     this.accountService.checkUserExists(loginUser).subscribe((user) => {
       this.currentUser = user;
       var isDev: boolean = false;
-      
-      if(this.currentUser.userName != ''){
+      console.log(this.currentUser);
+      if(this.currentUser.enabled == true){
         this.userName = '';
         this.password = '';
         this.currentUser.roles.forEach((role: Role) => {
@@ -75,6 +75,8 @@ export class LoginComponent {
           this.authenticationService.authenticate();
           this.router.navigate(['/user']);
         }
+      } else {
+        alert("Incorrect account info or account is not enabled, please try again.");
       }
     });
 
