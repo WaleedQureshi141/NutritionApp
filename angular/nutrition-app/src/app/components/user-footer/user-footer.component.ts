@@ -16,10 +16,10 @@ export class UserFooterComponent {
   logout(): void{
     this.router.navigate(['/login'])
   }
-  showReturnDev(){
+  showReturnDev(): boolean{
     return this.authenticationService.isAuthenticatedDev() && this.router.url !== '/dev';
   }
-  devGoBack(){
+  devGoBack(): void{
     this.router.navigate(['/dev']);
   }
 }
