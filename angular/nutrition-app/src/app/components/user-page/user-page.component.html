@@ -9,6 +9,7 @@
                 <th scope="col">Fat(grams)</th>
                 <th scope="col">Carbs(grams)</th>
                 <th scope="col">Date(YYYY-MM-DD)</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +20,9 @@
               <td>{{f.fat}}</td>
               <td>{{f.carbs}}</td>
               <td>{{f.addDate}}</td>
-              <button type="button" class="btn btn-danger btn-sm" (click)="deleteFood(f)">Delete</button>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteFood(f)">Delete</button>
+              </td>
             </tr>
           </tbody>
     </table>

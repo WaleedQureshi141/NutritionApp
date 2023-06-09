@@ -13,14 +13,17 @@
           <td>{{u.userName}}</td>
           <td>{{u.enabled}}</td>
           <td>{{(rolesToString(u))}}</td>
-          <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(u)">Delete</button>
-        </tr>
-        <tr>
-          <button type="button" class="btn btn-primary btn-sm" (click)="routeUserPage()">Go to user page</button>
-          <button type="button" class="btn btn-primary btn-sm" (click)="toggleCreateUI()">Toggle create dev UI</button>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(u)">Delete</button>
+          </td>
         </tr>
       </tbody>
 </table>
+<div class="d-flex flex-row justify-content-between">
+  
+  <button type="button" class="btn btn-primary btn-sm" (click)="toggleCreateUI()">Toggle create dev UI</button>
+  <button type="button" class="btn btn-primary btn-sm" (click)="routeUserPage()">Go to user page</button>
+</div>
 <div *ngIf="showCreateUI">
   <div class="container">
     <div class="d-flex flex-column justify-content-between create-meal-flex">
@@ -39,6 +42,6 @@
         </form>
     </div>
   </div>
-
 </div>
+<app-user-footer></app-user-footer>
 </div>
