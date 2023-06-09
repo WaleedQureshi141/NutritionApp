@@ -1,31 +1,35 @@
 <div class="container">
-    <app-user-page-nav></app-user-page-nav>
-    <table class="table table-stripped mt-4">
-        <thead>
-            <tr>
-                <th scope="col">Food name</th>
-                <th scope="col">Calories</th>
-                <th scope="col">Protein(grams)</th>
-                <th scope="col">Fat(grams)</th>
-                <th scope="col">Carbs(grams)</th>
-                <th scope="col">Date(YYYY-MM-DD)</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let f of foods">
-              <td>{{f.foodName}}</td>
-              <td>{{f.calories}}</td>
-              <td>{{f.protein}}</td>
-              <td>{{f.fat}}</td>
-              <td>{{f.carbs}}</td>
-              <td>{{f.addDate}}</td>
-              <td>
-                <button type="button" class="btn btn-danger btn-sm" (click)="deleteFood(f)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-    </table>
-    <app-user-footer></app-user-footer>
+    <div class="d-flex flex-column justify-content-between food-info-flex">
+        <app-user-page-nav></app-user-page-nav>
+        <div class="d-flex flex-column justify-content-between table-info-flex">
+            <table class="table table-stripped mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Food name</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Protein(grams)</th>
+                        <th scope="col">Fat(grams)</th>
+                        <th scope="col">Carbs(grams)</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of foods">
+                    <td>{{f.foodName}}</td>
+                    <td>{{f.calories}}</td>
+                    <td>{{f.protein}}</td>
+                    <td>{{f.fat}}</td>
+                    <td>{{f.carbs}}</td>
+                    <td>{{f.addDate}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteFood(f)">Delete</button>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-user-footer></app-user-footer>
+    </div>
 </div>
 

@@ -140,4 +140,5 @@ public class UserRestController {
         List<Nutrition> rv = nutritionInfoService.deleteById(id);
         return rv;
     }
+
 }

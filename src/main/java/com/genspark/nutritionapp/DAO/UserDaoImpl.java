@@ -66,6 +66,10 @@ public class UserDaoImpl implements UserDao {
         entityManager.createNativeQuery("DELETE FROM user WHERE userName = ?")
                 .setParameter(1, userName)
                 .executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM nutrition WHERE userName = ?")
+                .setParameter(1, userName)
+                .executeUpdate();
+
     }
 
 

@@ -37,6 +37,10 @@ export class AddFoodComponent {
       alert('Please add how many games of carbs this item contains.');
       return;
     }
+    if (!this.addDate){
+      alert('Please add a date for when you had this item. ');
+      return;
+    }
     const newFood : Food = {
       id: 0,
       userName: localStorage.getItem('currentUser') as string,

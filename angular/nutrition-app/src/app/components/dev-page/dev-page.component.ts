@@ -43,7 +43,7 @@ export class DevPageComponent {
         alert('Deleted user: ' + user.userName + ' succesfully!');
       });
     }
-    createDev(){
+    async createDev(){
       if(!this.userName){
         alert('Please add a username!');
         return;
@@ -58,7 +58,7 @@ export class DevPageComponent {
         roles: [{'id':1,'name': "ROLE_DEVELOPER"}] 
       }
       
-      this.accountService.addDev(newUser).subscribe((user: User) => (this.returnUser = user));
+      this.accountService.addDev(newUser).subscribe((user: User) => this.returnUser = user);
       alert('Account succesfully created. Please use the login tab for logging into the application. If it does not work please try registering a different username.');
       this.userName = '';
       this.password = '';

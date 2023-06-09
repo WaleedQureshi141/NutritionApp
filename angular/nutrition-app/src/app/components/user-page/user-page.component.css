@@ -1,0 +1,16 @@
+.food-info-flex {
+    margin-top: 25px;
+    gap: 25px;
+}
+.table-info-flex {
+    border-style: solid;
+    border-color: orange;
+    background-color: #f8d45c;
+    padding-left: 15px;
+    padding-right: 15px;
+    gap: 45px;
+}
+td, th, table {
+    background-color: rgb(240, 235, 164);
+    border-color: red;
+}
