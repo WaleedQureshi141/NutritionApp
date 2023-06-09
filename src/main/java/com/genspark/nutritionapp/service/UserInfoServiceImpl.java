@@ -69,11 +69,15 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public User saveDeveloper(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role role = new Role();
-        role.setId(1L);
-        role.setName("ROLE_DEVELOPER");
+        Role role1 = new Role();
+        Role role2 = new Role();
         ArrayList<Role> roleArrayList = new ArrayList<>();
-        roleArrayList.add(role);
+        role1.setId(1L);
+        role1.setName("ROLE_DEVELOPER");
+        role2.setId(2L);
+        role2.setName("ROLE_USER");
+        roleArrayList.add(role1);
+        roleArrayList.add(role2);
         user.setRoles(roleArrayList);
         user.setEnabled(true);
         //user.setDay(1)

@@ -47,11 +47,10 @@ public class SecurityConfig  {
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{username}").hasRole("DEVELOPER")
                         .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/dev").hasRole("DEVELOPER")
-                        .requestMatchers(HttpMethod.GET, "/api/nutritions").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/nutritions/{username}").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/nutritions").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/nutritions/nutritioncheck").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/nutritions/{foodname}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/nutritions").hasRole("DEVELOPER")
+                        .requestMatchers(HttpMethod.GET, "/api/nutritions/{username}").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/nutritions").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/nutritions/{foodname}").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/users/login").permitAll()
         );
         // use HTTP Basic authentication
